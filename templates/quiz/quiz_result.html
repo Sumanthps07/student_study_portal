@@ -1,0 +1,29 @@
+<!-- quiz/templates/quiz/quiz_result.html -->
+{% extends 'dashboard/index.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>{{ subject.name }} Quiz Results</h2>
+    {% if attempts %}
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Date Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attempt in attempts %}
+                    <tr>
+                        <td>{{ attempt.score }}</td>
+                        <td>{{ attempt.date_taken|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No quiz attempts found for this subject.</p>
+    {% endif %}
+    <a href="{% url 'quiz_home' %}" class="btn btn-secondary">Back to Quiz Home</a>
+</div>
+{% endblock %}

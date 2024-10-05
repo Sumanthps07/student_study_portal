@@ -1,0 +1,15 @@
+<!-- quiz/templates/quiz/quiz_home.html -->
+{% extends 'dashboard/index.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Select a Subject to Start the Quiz</h2>
+    <div class="list-group mt-4">
+        {% for subject in subjects %}
+            <a href="{% url 'take_quiz' subject.id %}" class="list-group-item list-group-item-action">
+                {{ subject.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

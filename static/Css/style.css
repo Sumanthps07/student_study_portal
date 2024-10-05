@@ -1,0 +1,25 @@
+/* static/css/style.css */
+
+/* Example custom styles */
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

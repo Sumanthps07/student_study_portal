@@ -1,0 +1,9 @@
+{% extends "dashboard/index.html" %}
+{% block content %}
+  <h2>Student Results for {{ subject.name }}</h2>
+  <ul>
+    {% for attempt in attempts %}
+      <li>{{ attempt.user.username }}: {{ attempt.score }} ({{ attempt.date_taken }})</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

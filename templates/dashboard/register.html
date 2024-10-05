@@ -1,0 +1,84 @@
+{% extends 'dashboard/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- Inline CSS for styling -->
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+    }
+
+    .bg-container {
+        background-image: url('{% static "path/to/your/background.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .card h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .text-muted {
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .text-muted a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .text-muted a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<!-- Background container -->
+<div class="bg-container">
+    <div class="card">
+        <h2>Join Today</h2>
+        <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <button class="btn btn-outline-info" type="submit">
+                Sign Up
+            </button>
+        </form>
+        <div class="text-muted">
+            Already have an account?
+            <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+        </div>
+    </div>
+</div>
+
+<!-- Optional: Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+{% endblock content %}

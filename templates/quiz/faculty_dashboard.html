@@ -1,0 +1,12 @@
+{% extends "dashboard/index.html" %}
+{% block content %}
+  <h2>Faculty Dashboard</h2>
+  <ul>
+    {% for subject in subjects %}
+      <li>{{ subject.name }} 
+        - <a href="{% url 'manage_questions' subject.id %}">Manage Questions</a> 
+        - <a href="{% url 'view_student_results' subject.id %}">View Student Results</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

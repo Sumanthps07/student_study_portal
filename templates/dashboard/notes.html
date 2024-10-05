@@ -1,0 +1,51 @@
+{% extends 'dashboard/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- Notes Container -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Your Notes</h2>
+    <div class="row">
+        {% for note in notes %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-header text-truncate p-2" title="{{ note.title }}">
+                    <small><strong>{{ note.title }}</strong></small>
+                </div>
+                <div class="card-body p-2">
+                    <p class="card-text text-truncate" title="{{ note.description }}">
+                        {{ note.description|slice:"0:100" }}...
+                    </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <small class="text-muted">{{ note.created_at|date:"F j, Y" }}</small>
+                    <a href="{% url 'delete-note' note.id %}" class="text-danger" title="Delete Note">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-muted">No notes available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Form to Create Notes -->
+<div class="container mt-4">
+    <h3 class="mb-3">Create a Note</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-right">
+            <button class="btn btn-outline-primary mt-2" type="submit">
+                Create
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
